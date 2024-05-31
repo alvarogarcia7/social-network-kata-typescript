@@ -1,0 +1,9 @@
+version: "3.9"
+
+services:
+  app:
+    image: myts
+    tty: true
+    volumes:
+      - "${PWD}:/app/"
+    command: bash

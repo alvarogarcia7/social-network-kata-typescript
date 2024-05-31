@@ -1,26 +1,5 @@
-class Message {
-    private message: string
-
-    constructor(message: string) {
-        this.message = message
-    }
-}
-
-interface MessageRepository {
-    save(message: Message): boolean
-}
-
-class PublishMessage {
-    private messageRepository: MessageRepository
-
-    constructor(messageRepository: MessageRepository) {
-        this.messageRepository = messageRepository
-    }
-
-    public publish(message: Message): boolean {
-        return this.messageRepository.save(message)
-    }
-}
+import {Message, MessageRepository} from './domain'
+import {PublishMessage} from './publishMessage'
 
 describe('Publish Message', () => {
     it('add to an empty timeline', () => {

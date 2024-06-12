@@ -25,4 +25,17 @@ describe('Publish Message', () => {
         expect(answer).toBeTruthy()
     })
 
+    it('add to an existing empty timeline', () => {
+
+        const messageRepository = new InMemoryMessageRepositoryImpl()
+        messageRepository.save(new Message(new User('Alice'), 'first message'))
+        messageRepository.save = jest.fn((_) => true)
+
+        const publishMessage = new PublishMessage(messageRepository)
+
+        const answer = publishMessage.publish(new Message(new User('Alice'), 'a message'))
+
+        expect(messageRepository.save).toHaveBeenCalled()
+        expect(answer).toBeTruthy()
+    })
 })

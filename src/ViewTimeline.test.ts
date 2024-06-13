@@ -16,7 +16,7 @@ describe('View Timeline', () => {
         }
 
         const viewTimelinePolicy: ViewTimelinePolicy = {
-            isAllowedTo: jest.fn((requester, targetUser) => true)
+            isAllowedTo: jest.fn((_1, _2) => true)
         }
 
         const viewTimeline = new ViewTimeline(messageRepository, viewTimelinePolicy)

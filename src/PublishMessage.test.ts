@@ -1,13 +1,21 @@
-import {Message, MessageRepository} from './domain'
+import {Message, MessageRepository, User} from './domain'
 import {PublishMessage} from './publishMessage'
+
+class InMemoryMessageRepositoryImpl implements MessageRepository {
+    public load(targetUser: User): Message[] {
+        return []
+    }
+
+    public save(message: Message): boolean {
+        return false
+    }
+}
 
 describe('Publish Message', () => {
     it('add to an empty timeline', () => {
 
-        const messageRepository: MessageRepository = {
-            save: jest.fn((message) => true),
-            load: jest.fn((user) => [])
-        }
+        const messageRepository = new InMemoryMessageRepositoryImpl()
+        messageRepository.save = jest.fn((_) => true)
 
         const publishMessage = new PublishMessage(messageRepository)
 

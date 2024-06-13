@@ -12,6 +12,8 @@ export interface MessageRepository {
     load(targetUser: User): Message[]
 }
 
+
+
 export class ViewTimelineRequest {
     public requester: User
     public targetUser: User

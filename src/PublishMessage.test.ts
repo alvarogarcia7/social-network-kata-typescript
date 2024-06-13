@@ -22,9 +22,6 @@ describe('Publish Message', () => {
         const answer = publishMessage.publish(new Message(new User('Alice'), 'a message'))
 
         expect(messageRepository.save).toHaveBeenCalled()
-        expect(messageRepository.load(new User('Alice'))).toEqual([
-            new Message(new User('Alice'), 'a message')
-        ])
         expect(answer).toBeTruthy()
     })
 

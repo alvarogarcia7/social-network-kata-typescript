@@ -12,6 +12,11 @@ describe('View Timeline', () => {
     it("Bob can view Alice's timeline", () => {
 
         const messageRepository: MessageRepository = {
+            load(_: User): Message[] {
+                return [
+                    new Message('hola mundo'),
+                    new Message('mi segundo tweet')]
+            },
             save: jest.fn((message) => true)
         }
 

@@ -5,7 +5,8 @@ describe('Publish Message', () => {
     it('add to an empty timeline', () => {
 
         const messageRepository: MessageRepository = {
-            save: jest.fn((message) => true)
+            save: jest.fn((message) => true),
+            load: jest.fn((user) => [])
         }
 
         const publishMessage = new PublishMessage(messageRepository)

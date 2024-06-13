@@ -8,6 +8,8 @@ export class Message {
 
 export interface MessageRepository {
     save(message: Message): boolean
+
+    load(targetUser: User): Message[]
 }
 
 export class ViewTimelineRequest {
@@ -55,8 +57,7 @@ export class ViewTimeline {
     public view(viewTimelineRequest: ViewTimelineRequest): Timeline {
         if (this.viewTimelinePolicy.isAllowedTo(viewTimelineRequest.requester, viewTimelineRequest.targetUser)) {
             return new Timeline(
-                new Message('hola mundo'),
-                new Message('mi segundo tweet'),
+                ...this.messageRepository.load(viewTimelineRequest.targetUser)
             )
         }
     }

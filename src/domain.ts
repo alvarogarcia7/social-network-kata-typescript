@@ -1,7 +1,9 @@
 export class Message {
+    private author: User
     private message: string
 
-    constructor(message: string) {
+    constructor(author: User, message: string) {
+        this.author = author
         this.message = message
     }
 }

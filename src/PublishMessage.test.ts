@@ -19,9 +19,10 @@ describe('Publish Message', () => {
 
         const publishMessage = new PublishMessage(messageRepository)
 
-        const answer = publishMessage.publish(new Message('' + 8))
+        const answer = publishMessage.publish(new Message(new User('Alice'), 'a message'))
 
         expect(messageRepository.save).toHaveBeenCalled()
         expect(answer).toBeTruthy()
     })
+
 })

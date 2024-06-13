@@ -1,7 +1,7 @@
 import {Message, MessageRepository, User} from './domain'
 import {PublishMessage} from './publishMessage'
 
-class InMemoryMessageRepositoryImpl implements MessageRepository {
+export default class InMemoryMessageRepositoryImpl implements MessageRepository {
     public load(targetUser: User): Message[] {
         return []
     }

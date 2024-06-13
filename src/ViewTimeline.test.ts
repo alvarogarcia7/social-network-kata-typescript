@@ -7,18 +7,12 @@ import {
     ViewTimelinePolicy,
     ViewTimelineRequest
 } from './domain'
+import InMemoryMessageRepositoryImpl from './PublishMessage.test';
 
 describe('View Timeline', () => {
     it("Bob can view Alice's timeline", () => {
-
-        const messageRepository: MessageRepository = {
-            load(_: User): Message[] {
-                return [
-                    new Message('hola mundo'),
-                    new Message('mi segundo tweet')]
-            },
-            save: jest.fn((message) => true)
-        }
+        const messageRepository: MessageRepository = new InMemoryMessageRepositoryImpl()
+        messageRepository.load = jest.fn((_) => [new Message('hola mundo'), new Message('mi segundo tweet')]);
 
         const viewTimelinePolicy: ViewTimelinePolicy = {
             isAllowedTo: jest.fn((_1, _2) => true)
@@ -37,15 +31,8 @@ describe('View Timeline', () => {
     })
 
     it("Bob cannot view Alice's timeline when not allowed", () => {
-
-        const messageRepository: MessageRepository = {
-            load(_: User): Message[] {
-                return [
-                    new Message('hola mundo'),
-                    new Message('mi segundo tweet')]
-            },
-            save: jest.fn((message) => true)
-        }
+        const messageRepository: MessageRepository = new InMemoryMessageRepositoryImpl()
+        messageRepository.load = jest.fn((_) => [new Message('hola mundo'), new Message('mi segundo tweet')]);
 
         const viewTimelinePolicy: ViewTimelinePolicy = {
             isAllowedTo: jest.fn((_1, _2) => false)

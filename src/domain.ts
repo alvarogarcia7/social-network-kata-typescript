@@ -54,11 +54,12 @@ export class ViewTimeline {
         this.viewTimelinePolicy = viewTimelinePolicy
     }
 
-    public view(viewTimelineRequest: ViewTimelineRequest): Timeline {
+    public view(viewTimelineRequest: ViewTimelineRequest): Timeline | undefined {
         if (this.viewTimelinePolicy.isAllowedTo(viewTimelineRequest.requester, viewTimelineRequest.targetUser)) {
             return new Timeline(
                 ...this.messageRepository.load(viewTimelineRequest.targetUser)
             )
         }
+        return undefined
     }
 }

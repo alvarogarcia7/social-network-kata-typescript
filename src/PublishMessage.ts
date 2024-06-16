@@ -2,8 +2,8 @@ import {ApplicationConfiguration} from './app/ApplicationConfiguration'
 import {Message, MessageRepository} from './Domain'
 
 export class PublishMessage {
-    private messageRepository: MessageRepository
-    private applicationConfiguration: ApplicationConfiguration
+    private readonly messageRepository: MessageRepository
+    private readonly applicationConfiguration: ApplicationConfiguration
 
     constructor(applicationConfiguration: ApplicationConfiguration, messageRepository: MessageRepository) {
         this.applicationConfiguration = applicationConfiguration

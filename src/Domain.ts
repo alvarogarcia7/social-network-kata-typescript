@@ -1,6 +1,6 @@
 export class Message {
-    private author: User
-    private message: string
+    private readonly author: User
+    private readonly message: string
 
     constructor(author: User, message: string) {
         this.author = author
@@ -35,7 +35,7 @@ export class ViewTimelineRequest {
 }
 
 export class User {
-    private username: string
+    private readonly username: string
 
     constructor(username: string) {
         this.username = username
@@ -63,7 +63,7 @@ export interface ViewTimelinePolicy {
 }
 
 export class Timeline {
-    private messages: Message[]
+    private readonly messages: Message[]
 
     constructor(...messages: Message[]) {
         this.messages = messages
@@ -71,8 +71,8 @@ export class Timeline {
 }
 
 export class ViewTimeline {
-    private messageRepository: MessageRepository
-    private viewTimelinePolicy: ViewTimelinePolicy
+    private readonly messageRepository: MessageRepository
+    private readonly viewTimelinePolicy: ViewTimelinePolicy
 
     constructor(messageRepository: MessageRepository, viewTimelinePolicy: ViewTimelinePolicy) {
         this.messageRepository = messageRepository

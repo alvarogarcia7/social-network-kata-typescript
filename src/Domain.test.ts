@@ -1,4 +1,4 @@
-import {User} from './domain'
+import {User} from './Domain'
 
 describe('User', () => {
     it('equality', () => {

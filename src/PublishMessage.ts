@@ -1,5 +1,5 @@
 import {ApplicationConfiguration} from './app/ApplicationConfiguration'
-import {Message, MessageRepository} from './domain'
+import {Message, MessageRepository} from './Domain'
 
 export class PublishMessage {
     private messageRepository: MessageRepository

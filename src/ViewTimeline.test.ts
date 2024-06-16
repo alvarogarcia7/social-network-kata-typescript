@@ -6,7 +6,7 @@ import {
     ViewTimeline,
     ViewTimelinePolicy,
     ViewTimelineRequest
-} from './domain'
+} from './Domain'
 import {InMemoryMessageRepositoryImpl} from './PublishMessage.test';
 
 describe('View Timeline', () => {

@@ -7,6 +7,7 @@ describe('User', () => {
         const anotherUser = new User('Alice')
 
         expect(user).toEqual(anotherUser)
+        expect(user.equals(anotherUser)).toBeTruthy()
     })
     it('not equality', () => {
 
@@ -14,5 +15,6 @@ describe('User', () => {
         const anotherUser = new User('Bob')
 
         expect(user).not.toEqual(anotherUser)
+        expect(user.equals(anotherUser)).toBeFalsy()
     })
 })

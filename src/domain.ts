@@ -41,6 +41,9 @@ export class User {
         this.username = username
     }
 
+    public equals(another: User) {
+        return this.username === another.username
+    }
 }
 
 export interface ViewTimelinePolicy {

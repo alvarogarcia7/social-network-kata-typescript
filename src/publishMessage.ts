@@ -3,14 +3,17 @@ import {Message, MessageRepository} from './domain'
 
 export class PublishMessage {
     private messageRepository: MessageRepository
-    private applicationConfiguration: ApplicationConfiguration;
+    private applicationConfiguration: ApplicationConfiguration
 
     constructor(applicationConfiguration: ApplicationConfiguration, messageRepository: MessageRepository) {
-        this.applicationConfiguration = applicationConfiguration;
+        this.applicationConfiguration = applicationConfiguration
         this.messageRepository = messageRepository
     }
 
     public publish(message: Message): boolean {
-        return this.messageRepository.save(message)
+        if (message.getAuthor.equals(this.applicationConfiguration.getLoggedInUser())) {
+            return this.messageRepository.save(message)
+        }
+        return false
     }
 }

@@ -13,7 +13,7 @@ export class InMemoryMessageRepositoryImpl implements MessageRepository {
 }
 
 export class FakeApplicationConfiguration implements ApplicationConfiguration {
-    private user: User | undefined
+    private readonly user: User | undefined
 
     public constructor(user: User | undefined) {
         this.user = user

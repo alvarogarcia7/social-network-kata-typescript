@@ -7,7 +7,7 @@ import {
     ViewTimelinePolicy,
     ViewTimelineRequest
 } from './domain'
-import InMemoryMessageRepositoryImpl from './PublishMessage.test';
+import {InMemoryMessageRepositoryImpl} from './PublishMessage.test';
 
 describe('View Timeline', () => {
     it("Bob can view Alice's timeline", () => {

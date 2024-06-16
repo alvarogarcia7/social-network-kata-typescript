@@ -1,7 +1,8 @@
+import {ApplicationConfiguration} from './app/ApplicationConfiguration'
 import {Message, MessageRepository, User} from './domain'
 import {PublishMessage} from './publishMessage'
 
-export default class InMemoryMessageRepositoryImpl implements MessageRepository {
+export class InMemoryMessageRepositoryImpl implements MessageRepository {
     public load(targetUser: User): Message[] {
         return []
     }
@@ -11,13 +12,27 @@ export default class InMemoryMessageRepositoryImpl implements MessageRepository 
     }
 }
 
+export class FakeApplicationConfiguration implements ApplicationConfiguration {
+    private user: User | undefined
+
+    public constructor(user: User | undefined) {
+        this.user = user
+    }
+
+    public getLoggedInUser(): User | undefined {
+        return this.user
+    }
+
+}
+
 describe('Publish Message', () => {
-    it('add to an empty timeline', () => {
+    it('add to an empty personal timeline', () => {
 
         const messageRepository = new InMemoryMessageRepositoryImpl()
         messageRepository.save = jest.fn((_) => true)
+        const applicationConfiguration = new FakeApplicationConfiguration(new User('Alice'))
 
-        const publishMessage = new PublishMessage(messageRepository)
+        const publishMessage = new PublishMessage(applicationConfiguration, messageRepository)
 
         const answer = publishMessage.publish(new Message(new User('Alice'), 'a message'))
 
@@ -25,13 +40,14 @@ describe('Publish Message', () => {
         expect(answer).toBeTruthy()
     })
 
-    it('add to an existing empty timeline', () => {
+    it('add to an existing personal timeline', () => {
 
         const messageRepository = new InMemoryMessageRepositoryImpl()
         messageRepository.save(new Message(new User('Alice'), 'first message'))
         messageRepository.save = jest.fn((_) => true)
+        const applicationConfiguration = new FakeApplicationConfiguration(new User('Alice'))
 
-        const publishMessage = new PublishMessage(messageRepository)
+        const publishMessage = new PublishMessage(applicationConfiguration, messageRepository)
 
         const answer = publishMessage.publish(new Message(new User('Alice'), 'a message'))
 

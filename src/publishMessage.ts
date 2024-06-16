@@ -1,9 +1,12 @@
+import {ApplicationConfiguration} from './app/ApplicationConfiguration'
 import {Message, MessageRepository} from './domain'
 
 export class PublishMessage {
     private messageRepository: MessageRepository
+    private applicationConfiguration: ApplicationConfiguration;
 
-    constructor(messageRepository: MessageRepository) {
+    constructor(applicationConfiguration: ApplicationConfiguration, messageRepository: MessageRepository) {
+        this.applicationConfiguration = applicationConfiguration;
         this.messageRepository = messageRepository
     }
 

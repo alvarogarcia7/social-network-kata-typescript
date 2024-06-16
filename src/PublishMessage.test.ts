@@ -1,6 +1,6 @@
 import {ApplicationConfiguration} from './app/ApplicationConfiguration'
 import {Message, MessageRepository, User} from './domain'
-import {PublishMessage} from './publishMessage'
+import {PublishMessage} from './PublishMessage'
 
 export class InMemoryMessageRepositoryImpl implements MessageRepository {
     public load(targetUser: User): Message[] {

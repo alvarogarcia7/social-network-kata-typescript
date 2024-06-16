@@ -6,6 +6,14 @@ export class Message {
         this.author = author
         this.message = message
     }
+
+    get getAuthor(): User {
+        return this.author
+    }
+
+    get getMessage(): string {
+        return this.message
+    }
 }
 
 export interface MessageRepository {

@@ -41,7 +41,19 @@ export class User {
         this.username = username
     }
 
-    public equals(another: User) {
+    public equals(another: object) {
+        if (this === another) {
+            return true
+        }
+        if (another === undefined) {
+            return false
+        }
+        if (this.constructor !== another.constructor) {
+            return false
+        }
+        if (!(another instanceof User)) {
+            return false
+        }
         return this.username === another.username
     }
 }

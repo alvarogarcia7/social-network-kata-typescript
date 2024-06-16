@@ -69,4 +69,19 @@ describe('Publish Message', () => {
         expect(messageRepository.save).not.toHaveBeenCalled()
         expect(answer).toBeFalsy()
     })
+
+    it('It is mandatory to be logged in to publish to an existing personal timeline', () => {
+
+        const messageRepository = new InMemoryMessageRepositoryImpl()
+        messageRepository.save(new Message(new User('Alice'), 'first message'))
+        messageRepository.save = jest.fn((_) => true)
+        const applicationConfiguration = new FakeApplicationConfiguration(undefined)
+
+        const publishMessage = new PublishMessage(applicationConfiguration, messageRepository)
+
+        const answer = publishMessage.publish(new Message(new User('Alice'), 'a message'))
+
+        expect(messageRepository.save).not.toHaveBeenCalled()
+        expect(answer).toBeFalsy()
+    })
 })
